@@ -16,6 +16,9 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@nuxt/ui": "^2.11.1"
+    "@iconify/json": "^2.2.161",
+    "@nuxt/ui": "^2.11.1",
+    "node-fetch": "^3.3.2",
+    "openai": "^4.0.0"
   }
 }
