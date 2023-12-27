@@ -1,9 +1,10 @@
 <template>
-  <UContainer class="w-full lg:w-2/3 h-screen p-5" :ui="uiBase">
+  <UContainer class="w-full lg:w-2/3 max-w-screen-lg h-screen p-5" :ui="uiBase">
     <UInput @keyup.enter="getCityWeather" v-model="cityToSearch" icon="i-mdi-magnify" :loading="isLoading" size="lg"
       placeholder="Enter a city..." />
 
-    <UContainer v-if="weatherObject.statusCode == 200" class="flex flex-col rounded-xl h-1/2 justify-between p-5 my-5"
+    <UContainer v-if="weatherObject.statusCode == 200"
+      class="flex flex-col rounded-xl w-full h-1/2 justify-between p-5 my-5"
       :style="{ backgroundImage: `url(${backgroundImage})` }" :ui="uiBase">
       <span class="font-bold text-4xl px-0 pb-3">{{ weatherObject.city }}</span>
       <div class="flex w-full justify-center py-3"></div>
@@ -92,14 +93,14 @@ const getCityForecast = async () => {
 };
 
 const setBackgroundImage = async (query) => {
-  await fetch(`https://api.unsplash.com/search/photos?orientation=portrait&query=${query}`, {
+  await fetch(`https://api.unsplash.com/search/photos?orientation=landscape&query=${query}`, {
     headers: {
       'Authorization': 'Bearer Client-ID 207ThCRe4EOKQ_qkJgMNYSqp6dbCIFQHm7YU_S-ARS8'
     }
   }).then(response => {
     response.json()
       .then(data => {
-        backgroundImage.value = data.results[0].urls.regular;
+        backgroundImage.value = data.results[0].urls.full;
       });
   }).catch(error => { console.error(error) });
 };
